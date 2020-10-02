@@ -1,0 +1,55 @@
+package com.example.work.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.work.entity.Work;
+import com.example.work.service.IWorkService;
+
+@RestController
+@RequestMapping("/controller")
+public class WorkController {
+	public IWorkService iWorkService;
+	
+	@Autowired
+	public WorkController(IWorkService iWorkService) {
+		this.iWorkService=iWorkService;
+	}
+	
+	@GetMapping("/insert/name/{name}/describe/{describe}")
+	public Work insertWork(@PathVariable String name,@PathVariable String describe) {
+		Work w=new Work();
+		w.setName(name);
+		w.setDescribe(describe);
+		iWorkService.insert(w);
+		return	w;	
+	}
+	  
+	@GetMapping("/findId/{Id}")
+	public Work findById(@PathVariable Integer Id) {
+		
+		return iWorkService.findById(Id);
+	}
+	
+	@PostMapping("/post")
+	public void insert(@RequestBody Work w) {
+		iWorkService.insert(w);
+	}
+	
+	@PutMapping("/put/{id}")
+	public void update(@RequestBody Work w,@PathVariable Integer id) {
+		iWorkService.update(id, w);
+	}
+	
+	@DeleteMapping("Delete/{id}")
+	public void delete(@PathVariable Integer id) {
+		iWorkService.delete(id);
+	}
+}

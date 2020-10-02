@@ -1,0 +1,9 @@
+package com.example.work.repository;
+
+import com.example.work.entity.Work;
+
+public interface IWorkRepository {
+	public void insert(Work w);
+	public Work findById(int id);
+	public Work delete(Work w);
+}

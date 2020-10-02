@@ -1,0 +1,21 @@
+package com.example.work.controller;
+
+
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.work.entity.Work;
+
+@RestController
+@RequestMapping("/put")
+public class PutController {
+	@PutMapping("/String")
+	public String putController(@PathVariable Integer workId,@RequestBody Work w) {
+		return String.format("Update work has is : %s with new add: %s success",workId,w.getName());
+		
+		
+	}
+}

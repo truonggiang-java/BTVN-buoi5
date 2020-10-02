@@ -1,0 +1,37 @@
+package com.example.work.service.impl;
+
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.example.work.entity.Work;
+import com.example.work.repository.IWorkRepository;
+import com.example.work.service.IWorkService;
+
+public class WorkServiceImpl implements IWorkService{
+	public IWorkRepository iWorkRepository;
+	
+	@Autowired
+	public WorkServiceImpl(IWorkRepository iWorkRepository) {
+		this.iWorkRepository=iWorkRepository;
+	}
+	
+	@Override
+	@Transactional
+	public void insert(Work w) {
+		iWorkRepository.insert(w);
+		
+	}
+
+	@Override
+	public Work findById(Integer id) {
+		return iWorkRepository.findById(id);
+	}
+
+	@Override
+	public Work update(Work w) {
+		
+		return iWorkRepository.update(w);
+	}
+
+}

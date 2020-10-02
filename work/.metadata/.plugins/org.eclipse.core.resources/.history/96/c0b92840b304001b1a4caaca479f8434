@@ -1,0 +1,39 @@
+package com.example.work.repository.impl;
+
+import javax.persistence.EntityManager;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.example.work.entity.Work;
+import com.example.work.repository.IWorkRepository;
+
+@Repository
+@Transactional(rollbackFor = Exception.class)
+public class WorkRepositoryImpl implements IWorkRepository{
+	public EntityManager em;
+	
+	@Autowired
+	public WorkRepositoryImpl(EntityManager em) {
+		this.em=em;
+	}
+	@Override
+	public void insert(Work w) {
+		em.persist(w);
+		
+	}
+
+	@Override
+	public Work findById(int id) {
+		
+		return em.find(Work.class, id);
+	}
+
+	@Override
+	public void delete(Work w) {
+		em.remove(w);
+	}
+	
+
+}

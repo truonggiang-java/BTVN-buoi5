@@ -1,0 +1,11 @@
+package com.example.work.service;
+
+import com.example.work.entity.Work;
+
+public interface IWorkService {
+	public void insert(Work w);
+	public Work findById(Integer id);
+	public void update(Integer id,Work w);
+	public void delete(Work w);
+	
+}

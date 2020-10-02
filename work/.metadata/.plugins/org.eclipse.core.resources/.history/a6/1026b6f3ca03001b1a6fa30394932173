@@ -1,0 +1,5 @@
+package com.example.work.repository.impl;
+
+public interface IWorkRepository {
+
+}
